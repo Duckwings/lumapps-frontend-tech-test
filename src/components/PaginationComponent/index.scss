@@ -1,0 +1,21 @@
+.pagination_component {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    margin-top: 40px;
+}
+
+.active_pagination_button {
+    font-weight: bold;
+}
+
+.pagination_button {
+    background-color: #4498f8;
+    color: white;
+    font-size: 30px;
+    margin: 0 5px;
+    border: none;
+    padding: 3px 10px;
+    border-radius: 5px;
+}

@@ -8,6 +8,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Header from '../components/Header';
+import MarvelContainer from '../components/MarvelContainer';
 
 const MARVEL_URL = 'https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=';
 const API_KEY = process.env.REACT_APP_MARVEL_API_KEY;
@@ -50,7 +51,7 @@ function App() {
 						path="/"
 					>
 						<section className="lumx-spacing-padding-horizontal-huge" />
-						test
+					<MarvelContainer marvelCharacters={marvelCharacters}/>
 					</Route>
 				</Switch>
 			</Router>

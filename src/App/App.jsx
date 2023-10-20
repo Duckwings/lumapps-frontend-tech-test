@@ -18,12 +18,16 @@ function App() {
 
 	const fetchMarvelData = query => {
 		const apiUrl = `${MARVEL_URL}${query}&apikey=${API_KEY}`;
-
-		fetch(apiUrl)
-		.then((res) => res.json())
-		.then((res) => {
-			setMarvelCharacters(res.data.results);
-		});
+		try {
+			fetch(apiUrl)
+			.then((res) => res.json())
+			.then((res) => {
+				console.log(res, 'response');
+				setMarvelCharacters(res.data.results);
+			})
+		} catch {
+			setMarvelCharacters([]);
+		}
 	};
 
 	useEffect(() => {

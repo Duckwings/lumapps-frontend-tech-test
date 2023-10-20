@@ -1,20 +1,33 @@
 import React from 'react';
 import CharacterInfo from '../CharacterInfo';
+import PaginationComponent from '../PaginationComponent';
+
 import './index.scss';
 
-const API_KEY = process.env.REACT_APP_MARVEL_API_KEY;
-
-const MarvelContainer = ({ marvelCharacters }) => {
+const MarvelContainer = ({ marvelCharacters, numberOfPages, currentPage, setCurrentPage }) => {
+    const sliceMarvelDataWithPage = characters => {
+        const lowerIndex = currentPage * 4 - 4;
+        const upperIndex = currentPage * 4;
+        return characters.slice(lowerIndex, upperIndex);
+    };
 
     const mapAndDisplayCharacters = () => {
-        return marvelCharacters.map(character => (
-          <CharacterInfo character={character}/>
+        const filteredMarvelCharacters = sliceMarvelDataWithPage(marvelCharacters);
+        return filteredMarvelCharacters.map(character => (
+          <CharacterInfo key={character.id} character={character}/>
         ));
     };
 
     return (
         <div className="character_display_container">
             {mapAndDisplayCharacters()}
+            {numberOfPages >= 1 && 
+                <PaginationComponent 
+                    numberOfPages={numberOfPages}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
+            }
         </div>
     );
 }

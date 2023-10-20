@@ -18,16 +18,17 @@ function App() {
 	const [marvelCharacters, setMarvelCharacters] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [numberOfPages, setNumberOfPages] = useState(0);
+	const [isLoading, setLoading] = useState(false);
 
 	const fetchMarvelData = query => {
 		const apiUrl = `${MARVEL_URL}${query}&apikey=${API_KEY}`;
+		setCurrentPage(1);
 		try {
 			fetch(apiUrl)
 			.then((res) => res.json())
 			.then((res) => {
 				const howManyPages = res.data.results && Math.ceil(res.data.results.length / 4);
 				setNumberOfPages(howManyPages);
-				setCurrentPage(1);
 				setMarvelCharacters(res.data.results);
 			})
 		} catch {
@@ -36,9 +37,12 @@ function App() {
 	};
 
 	useEffect(() => {
+		setNumberOfPages(0);
 		if(!inputValue || !inputValue.length) return setMarvelCharacters([]);
+		setLoading(true);
 		const waitUntilStopTyping = setTimeout(() => {
 			fetchMarvelData(inputValue);
+			setLoading(false);
 			}, 500)
 		
 		return () => clearTimeout(waitUntilStopTyping)
@@ -59,7 +63,8 @@ function App() {
 						marvelCharacters={marvelCharacters}
 						numberOfPages={numberOfPages}
 						currentPage={currentPage}
-						setCurrentPage={setCurrentPage}	
+						setCurrentPage={setCurrentPage}
+						isLoading={isLoading}
 					/>
 					</Route>
 				</Switch>

@@ -3,8 +3,9 @@ import CharacterInfo from '../CharacterInfo';
 import PaginationComponent from '../PaginationComponent';
 
 import './index.scss';
+const loading = require("../../images/oval.svg");
 
-const MarvelContainer = ({ marvelCharacters, numberOfPages, currentPage, setCurrentPage }) => {
+const MarvelContainer = ({ marvelCharacters, numberOfPages, currentPage, setCurrentPage, isLoading }) => {
     const sliceMarvelDataWithPage = characters => {
         const lowerIndex = currentPage * 4 - 4;
         const upperIndex = currentPage * 4;
@@ -20,7 +21,11 @@ const MarvelContainer = ({ marvelCharacters, numberOfPages, currentPage, setCurr
 
     return (
         <div className="character_display_container">
-            {mapAndDisplayCharacters()}
+            {isLoading ? 
+                    <img className="loading_data" src={loading} alt="loading gif"/>
+                :
+                    mapAndDisplayCharacters()
+            }
             {numberOfPages >= 1 && 
                 <PaginationComponent 
                     numberOfPages={numberOfPages}

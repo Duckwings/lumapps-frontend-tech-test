@@ -1,0 +1,43 @@
+.character_infos_container {
+ border: 2px solid #518CCA;
+ border-radius: 5px;
+ min-height: 100px;
+ padding: 13px 15px;
+ display: flex;
+ margin: 20px 0;
+ 
+ .character_picture {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+ }
+
+ .character_infos_right_part {
+    padding: 0 10px;
+
+    .character_name {
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 18px;
+        margin-bottom: 8px;
+    }
+
+    .character_description {
+        font-size: 12px;
+        line-height: 16px;
+        margin-bottom: 7px;
+    }
+
+    .character_additional_infos {
+        display: flex;
+        p {
+            font-size: 12px;
+            margin-right: 15px;
+        }
+
+        span {
+            font-weight: bold;
+        }
+    }
+ }
+}

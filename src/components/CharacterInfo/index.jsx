@@ -1,19 +1,21 @@
 import React from 'react';
+import './index.scss';
 
 const CharacterInfo = ({ character }) => (
-    <div>  
+    <div className="character_infos_container">  
         <img 
+        className="character_picture"
         src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
         alt={`${character.name} picture`}
         />
-        <div>
-        <p>{character.name}</p>
-        <p>{character.description}</p>
-        <div>
-            <p># comics: {character.comics.available}</p>
-            <p># series: {character.series.available}</p>
-            <p># stories: {character.stories.available}</p>
-        </div>
+        <div className="character_infos_right_part">
+            <p className="character_name">{character.name}</p>
+            <p className="character_description">{character.description}</p>
+            <div className="character_additional_infos">
+                <p><span># comics:</span> {character.comics.available}</p>
+                <p><span># series:</span> {character.series.available}</p>
+                <p><span># stories:</span> {character.stories.available}</p>
+            </div>
         </div>
     </div>
 );
